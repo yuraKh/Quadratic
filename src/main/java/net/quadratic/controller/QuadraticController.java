@@ -16,9 +16,12 @@ public class QuadraticController {
     @Autowired
     private ParamsService paramsService;
 
+    @Autowired
+    private MessageSourceConfiguration message;
+
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "Введите коэфициенты a, b, c");
+        model.addAttribute("message", message.getMessage("insert.data.message"));
         model.addAttribute("params", new ParamsDto());
         return "values";
     }
