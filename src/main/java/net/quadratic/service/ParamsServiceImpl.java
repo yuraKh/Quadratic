@@ -25,25 +25,25 @@ public class ParamsServiceImpl implements ParamsService {
         } else {
             double D = dto.getB() * dto.getB() - 4 * dto.getA() * dto.getC();
             Params params = new Params(dto);
-            String responce;
+            String response;
             if (D > 0) {
                 double x1, x2;
                 x1 = (-dto.getB() - Math.sqrt(D)) / (2 * dto.getA());
                 x2 = (-dto.getB() + Math.sqrt(D)) / (2 * dto.getA());
                 params.setX1(x1);
                 params.setX2(x2);
-                responce = message.getMessage("message.success.two_results", new Object[]{x1, x2});
+                response = message.getMessage("message.success.two_results", new Object[]{x1, x2});
             } else if (D == 0) {
                 double x;
                 x = -dto.getB() / (2 * dto.getA());
                 params.setX1(x);
-                responce = message.getMessage("message.success.one_results", new Object[]{x});
+                response = message.getMessage("message.success.one_results", new Object[]{x});
             } else {
-                responce = message.getMessage("message.success.no_results");
+                response = message.getMessage("message.success.no_results");
             }
             paramsDAO.save(params);
 
-            return responce;
+            return response;
         }
     }
 }
